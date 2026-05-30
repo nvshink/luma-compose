@@ -67,9 +67,23 @@ val emptyJavadocJar by tasks.registering(Jar::class) {
 }
 
 afterEvaluate {
+  val signingKey = providers.gradleProperty("signingInMemoryKey")
+    .orElse(providers.environmentVariable("ORG_GRADLE_PROJECT_signingInMemoryKey"))
+  val signingKeyId = providers.gradleProperty("signingInMemoryKeyId")
+    .orElse(providers.environmentVariable("ORG_GRADLE_PROJECT_signingInMemoryKeyId"))
+  val signingPassword = providers.gradleProperty("signingInMemoryKeyPassword")
+    .orElse(providers.environmentVariable("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword"))
+
   mavenPublishing {
     publishToMavenCentral()
-    signAllPublications()
+
+    if (signingKey.isPresent) {
+      if (signingKeyId.isPresent && signingPassword.isPresent) {
+        signAllPublications()
+      } else if (signingPassword.isPresent) {
+        signAllPublications()
+      }
+    }
   }
 
   publishing {
