@@ -96,10 +96,6 @@ afterEvaluate {
         else -> artifactId
       }
 
-      if (name == "kotlinMultiplatform") {
-        artifact(emptyJavadocJar)
-      }
-
       pom {
         name.set(providers.gradleProperty("POM_NAME"))
         description.set(providers.gradleProperty("POM_DESCRIPTION"))
