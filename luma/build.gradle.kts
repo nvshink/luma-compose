@@ -7,8 +7,7 @@ plugins {
   alias(libs.plugins.android.kotlin.multiplatform.library)
   alias(libs.plugins.compose.multiplatform)
   alias(libs.plugins.compose.compiler)
-  `maven-publish`
-  signing
+  id("com.vanniktech.maven.publish")
 }
 
 kotlin {
@@ -68,6 +67,11 @@ val emptyJavadocJar by tasks.registering(Jar::class) {
 }
 
 afterEvaluate {
+  mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+  }
+
   publishing {
     publications.withType<MavenPublication>().configureEach {
       val baseArtifactId = providers.gradleProperty("POM_ARTIFACT_ID").get()
@@ -116,18 +120,6 @@ afterEvaluate {
         name = "projectLocal"
         url = uri(layout.buildDirectory.dir("repo"))
       }
-    }
-  }
-
-  signing {
-    val signingKey = providers.gradleProperty("signingInMemoryKey")
-      .orElse(providers.environmentVariable("ORG_GRADLE_PROJECT_signingInMemoryKey"))
-    val signingPassword = providers.gradleProperty("signingInMemoryKeyPassword")
-      .orElse(providers.environmentVariable("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword"))
-
-    if (signingKey.isPresent && signingPassword.isPresent) {
-      useInMemoryPgpKeys(signingKey.get(), signingPassword.get())
-      sign(publishing.publications)
     }
   }
 }

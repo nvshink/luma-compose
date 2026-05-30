@@ -30,6 +30,6 @@ plugins {
 }
 
 rootProject.name = "Luma Compose"
-include(":visuals")
+include(":luma")
 include(":android-demo")
 include(":desktop-demo")

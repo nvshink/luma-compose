@@ -51,7 +51,7 @@ dependencies {
   implementation(composeBom)
   androidTestImplementation(composeBom)
 
-  implementation(project(":visuals"))
+  implementation(project(":luma"))
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
   implementation(libs.androidx.activity.compose)

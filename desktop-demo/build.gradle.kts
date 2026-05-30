@@ -9,7 +9,7 @@ kotlin {
 }
 
 dependencies {
-  implementation(project(":visuals"))
+  implementation(project(":luma"))
   implementation(compose.desktop.currentOs)
   implementation(compose.material3)
 }

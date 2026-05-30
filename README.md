@@ -44,7 +44,7 @@ Published target-specific artifacts:
 
 Module layout:
 
-- `:visuals` KMP library module with shared public API and presets
+- `:luma` KMP library module with shared public API and presets
 - `:android-demo` Android demo app with catalog screens and live controls
 - `:desktop-demo` Compose Desktop demo app for trying the same effects on JVM desktop
 
