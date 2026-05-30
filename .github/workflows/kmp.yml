@@ -1,0 +1,52 @@
+name: KMP CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  shared:
+    name: Shared, Desktop, and JS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+          cache: gradle
+
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      - name: Compile shared targets
+        run: ./gradlew :visuals:compileKotlinDesktop :visuals:compileKotlinJs --stacktrace --console=plain
+
+      - name: Verify non-Apple publications
+        run: ./gradlew :visuals:publishKotlinMultiplatformPublicationToProjectLocalRepository :visuals:publishDesktopPublicationToProjectLocalRepository :visuals:publishJsPublicationToProjectLocalRepository --stacktrace --console=plain
+
+  ios:
+    name: iOS targets
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+          cache: gradle
+
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      - name: Compile iOS targets
+        run: ./gradlew :visuals:compileKotlinIosX64 :visuals:compileKotlinIosArm64 :visuals:compileKotlinIosSimulatorArm64 --stacktrace --console=plain

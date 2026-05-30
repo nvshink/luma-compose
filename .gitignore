@@ -2,16 +2,7 @@
 .gradle
 /local.properties
 /.github/.DS_Store
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/deploymentTargetDropDown.xml
-/.idea/gradle.xml
-/.idea/misc.xml
-/.idea/runConfigurations.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.idea
 .DS_Store
 /build
 /captures

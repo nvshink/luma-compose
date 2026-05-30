@@ -16,7 +16,7 @@ Use the published artifact:
 
 ```kotlin
 dependencies {
-    implementation("io.github.nvshink:luma-compose:0.1.0")
+    implementation("io.github.nvshink:luma-compose:1.0.0")
 }
 ```
 
@@ -26,7 +26,7 @@ For Kotlin Multiplatform consumers, use the shared coordinate in `commonMain`:
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("io.github.nvshink:luma-compose:0.1.0")
+            implementation("io.github.nvshink:luma-compose:1.0.0")
         }
     }
 }
