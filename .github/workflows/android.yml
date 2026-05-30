@@ -27,4 +27,4 @@ jobs:
         run: chmod +x gradlew
 
       - name: Validate Android targets
-        run: ./gradlew :visuals:compileAndroidMain :android-demo:assembleDebug --stacktrace --console=plain
+        run: ./gradlew :luma:compileAndroidMain :android-demo:assembleDebug --stacktrace --console=plain

@@ -25,10 +25,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Compile shared targets
-        run: ./gradlew :visuals:compileKotlinDesktop :visuals:compileKotlinJs --stacktrace --console=plain
+        run: ./gradlew :luma:compileKotlinDesktop :luma:compileKotlinJs --stacktrace --console=plain
 
       - name: Verify non-Apple publications
-        run: ./gradlew :visuals:publishKotlinMultiplatformPublicationToProjectLocalRepository :visuals:publishDesktopPublicationToProjectLocalRepository :visuals:publishJsPublicationToProjectLocalRepository --stacktrace --console=plain
+        run: ./gradlew :luma:publishKotlinMultiplatformPublicationToProjectLocalRepository :luma:publishDesktopPublicationToProjectLocalRepository :luma:publishJsPublicationToProjectLocalRepository --stacktrace --console=plain
 
   ios:
     name: iOS targets
@@ -49,4 +49,4 @@ jobs:
         run: chmod +x gradlew
 
       - name: Compile iOS targets
-        run: ./gradlew :visuals:compileKotlinIosX64 :visuals:compileKotlinIosArm64 :visuals:compileKotlinIosSimulatorArm64 --stacktrace --console=plain
+        run: ./gradlew :luma:compileKotlinIosX64 :luma:compileKotlinIosArm64 :luma:compileKotlinIosSimulatorArm64 --stacktrace --console=plain
